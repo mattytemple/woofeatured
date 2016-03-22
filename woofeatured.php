@@ -9,7 +9,7 @@
 	Author URI: http://www.usingwordpressforbusiness.com
 	License: GPLv3
  */
- 
+
  	// Add term page
 	function woofeatured_taxonomy_add_new_meta_field() {
 	    // this will add the custom meta field to the add new term page
@@ -54,10 +54,10 @@
 
 	// Edit term page
 	function woofeatured_taxonomy_edit_meta_field($term) {
-	 
+
 	    // put the term ID into a variable
 	    $t_id = $term->term_id;
-	 
+
 	    // retrieve the existing value(s) for this meta field. This returns an array
 	    $term_meta = get_option( "taxonomy_$t_id" ); ?>
 	    <tr class="form-field">
@@ -104,7 +104,7 @@
 	add_action( 'product_cat_edit_form_fields', 'woofeatured_taxonomy_edit_meta_field', 10, 2 );
 
 	// Save extra taxonomy fields callback function.
-	function save_taxonomy_custom_meta( $term_id ) {
+	function woofeatured_save_taxonomy_custom_meta( $term_id ) {
 	    if ( isset( $_POST['woofeatured_products'] ) ) {
 
 	    	$t_id = $term_id;
@@ -113,10 +113,10 @@
 	        // Save the option array.
 	        update_option( "woofeatured_$t_id", $woofeatured_products );
 	    }
-	} 
+	}
 
-	add_action( 'edited_product_cat', 'save_taxonomy_custom_meta', 10, 2 );  
-	add_action( 'create_product_cat', 'save_taxonomy_custom_meta', 10, 2 );
+	add_action( 'edited_product_cat', 'woofeatured_save_taxonomy_custom_meta', 10, 2 );
+	add_action( 'create_product_cat', 'woofeatured_save_taxonomy_custom_meta', 10, 2 );
 
 
 	function woofeatured_display() {
@@ -314,20 +314,20 @@
 			</div>
 			<div style="width:300px;padding:19px;border:#cccccc 1px solid;float:right;margin:0px;background:#ffffff;">
 				<h2 style="margin-bottom:5px;">WooCommerce Category Featured Products <span style="color:#cccccc;">v1.0.0</span></h2>
-				
+
 				<h2 style="margin-bottom:5px;margin-top:10px;font-size:18px;line-height:18px;font-weight:bold;padding:0px;">Support &amp; Resources</h2>
 				<p style="margin-top:0px;margin-bottom:10px;">Read documentation, FAQs and contact our online support for help getting started.</p>
 				<ul style="margin:0px;margin-bottom:20px;">
 					<li><a href="http://www.usingwordpressforbusiness.com/woofeatured/" target="_blank">Visit Support &amp; Resource Center</a></li>
 					<li><a href="http://www.usingwordpressforbusiness.com/documents/woofeatured-changelog.txt" target="_blank">Read The Changelog</a></li>
 				</ul>
-				
+
 				<h2 style="margin-bottom:5px;margin-top:10px;font-size:18px;line-height:18px;font-weight:bold;padding:0px;">More Plugins &amp; Themes</h2>
 				<p style="margin-top:0px;margin-bottom:10px;">Read documentation, FAQs and contact our online support for help getting started.</p>
 				<ul style="margin:0px;margin-bottom:20px;">
 					<li><a href="http://www.usingwordpressforbusiness.com/plugins/" target="_blank">View All Plugins</a></li>
 				</ul>
-				
+
 				<h2 style="margin-bottom:5px;margin-top:10px;font-size:18px;line-height:18px;font-weight:bold;padding:0px;">Like It? Show Some Love</h2>
 				<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FWP4Biz&amp;width=300&amp;height=25&amp;colorscheme=light&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=467671163295082" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:25px;" allowTransparency="true"></iframe>
 			</div>
